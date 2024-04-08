@@ -71,12 +71,29 @@ class MainActivity: AppCompatActivity(), OnClickListener {
     }
 
     private fun updateListview() {
+
+        //AQUI O ITEM 1!
+
+        val drawHistory = draw.getHistory()
+        val sortedHistory = drawHistory.mapIndexed { index, number ->
+            "${index + 1} sorteado: $number" //index +1 por causa dos indices da lista
+        }
+        val adapter: ArrayAdapter<String> = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            sortedHistory
+        )
+        binding.listviewDraw.adapter = adapter
+
+
+        /*
         val adapter: ArrayAdapter<Int> = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
             draw.getHistory()
         )
         binding.listviewDraw.adapter = adapter
+         */
     }
 
     private fun showErrorDialog(errorMessage: String) {
